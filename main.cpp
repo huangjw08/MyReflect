@@ -21,13 +21,15 @@ className##Helper className##helper;
 REGISTRY(FileItem)
 REGISTRY(ConsoleItem)
 
-
-static void *createFileItemFunc2(){
-	LOG(INFO)<<"this is createFileItemFunc2\n";
-	return new FileItem;
+namespace RF{
+	static void *createFileItemFunc2(){
+		LOG(INFO)<<"this is createFileItemFunc2\n";
+		return new FileItem;
+	}
 }
 
 using namespace RF;
+
 int main() {
 
 	google::InitGoogleLogging("MyReflect");
