@@ -17,10 +17,25 @@ REGISTRY(FileItem)
 REGISTRY(ConsoleItem)
 
 
+static void *createFileItemFunc2(){
+	std::cout<<"this is createFileItemFunc2\n";
+	return new FileItem;
+}
+
+
 int main() {
 
 	FileItem* fileItemPtr= static_cast<FileItem*>(ClassFactory::getInstance().getItemObject("FileItem"));
 	fileItemPtr->Print();
+
+	std::cout<<"change createObjFunc\n";
+	ClassFactory::getInstance().registItemObject("FileItem",createFileItemFunc2);
+	fileItemPtr=static_cast<FileItem*>(ClassFactory::getInstance().getItemObject("FileItem"));
+	fileItemPtr->Print();
+	//do not need to delete fileItemPtr; ~ClassFactory() will do it;
+
+	ConsoleItem* consoleItemPtr= static_cast<ConsoleItem*>(ClassFactory::getInstance().getItemObject("ConsoleItem"));
+	consoleItemPtr->Print();
 
 	return 0;
 }
