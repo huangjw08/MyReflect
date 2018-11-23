@@ -10,7 +10,7 @@
 #define REGISTRY(className) \
 class className##Helper{\
 public:\
-	className##Helper(){ClassFactory::getInstance().registItemObject(#className,createClassNameFunc);}\
+	className##Helper(){RF::ClassFactory::getInstance().registItemObject(#className,createClassNameFunc);}\
 	static void *createClassNameFunc(){\
 		LOG(INFO)<<"this is createClassNameFunc\n";\
 		return new className;\
@@ -27,7 +27,7 @@ static void *createFileItemFunc2(){
 	return new FileItem;
 }
 
-
+using namespace RF;
 int main() {
 
 	google::InitGoogleLogging("MyReflect");

@@ -6,23 +6,27 @@
 #define MYREFLECT_SINGLETON_H
 
 
-template <typename T>
-class Singleton{
-public:
+namespace RF{
+	template <typename T>
+	class Singleton{
+	public:
 
-	static T& getInstance(){
-		static T t_obj;
-		return t_obj;
-	}
+		static T& getInstance(){
+			static T t_obj;
+			return t_obj;
+		}
 
-private:
-	friend T;
-	Singleton(){}
-	~Singleton(){}
+	private:
+		friend T;
+		Singleton(){}
+		~Singleton(){}
 
-private:
-	Singleton(const Singleton& ){}
-	Singleton& operator=(const Singleton&){}
-};
+	private:
+		Singleton(const Singleton& ){}
+		Singleton& operator=(const Singleton&){}
+	};
+
+}
+
 
 #endif //MYREFLECT_SINGLETON_H

@@ -10,21 +10,25 @@
 #include <map>
 #include <string>
 
-typedef void* (*createObjFuncPtr)();
+namespace RF{
+	typedef void* (*createObjFuncPtr)();
 
-class ClassFactory: public Singleton<ClassFactory>{
-public:
+	class ClassFactory: public Singleton<ClassFactory>{
+	public:
 
-	void* getItemObject(const std::string &className);
+		void* getItemObject(const std::string &className);
 
-	void registItemObject(const std::string &className,createObjFuncPtr ptr);
+		void registItemObject(const std::string &className,createObjFuncPtr ptr);
 
-	~ClassFactory();
+		~ClassFactory();
 
-private:
-	friend Singleton<ClassFactory>;
-	ClassFactory(){}
-	std::map<std::string,createObjFuncPtr> factory;
-};
+	private:
+		friend Singleton<ClassFactory>;
+		ClassFactory(){}
+		std::map<std::string,createObjFuncPtr> factory;
+	};
+
+}
+
 
 #endif //MYREFLECT_CLASSFACTORY_H
