@@ -7,24 +7,25 @@
 
 
 namespace RF{
-	template <typename T>
-	class Singleton{
-	public:
 
-		static T& getInstance(){
-			static T t_obj;
-			return t_obj;
-		}
+template <typename T>
+class Singleton{
+public:
 
-	private:
-		friend T;
-		Singleton(){}
-		~Singleton(){}
+	static T& getInstance(){
+		static T t_obj;
+		return t_obj;
+	}
 
-	private:
-		Singleton(const Singleton& ){}
-		Singleton& operator=(const Singleton&){}
-	};
+private:
+	friend T;
+	Singleton(){}
+	~Singleton(){}
+
+private:
+	Singleton(const Singleton& ){}
+	Singleton& operator=(const Singleton&){}
+};
 
 }
 

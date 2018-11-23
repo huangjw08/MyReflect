@@ -11,22 +11,24 @@
 #include <string>
 
 namespace RF{
-	typedef void* (*createObjFuncPtr)();
 
-	class ClassFactory: public Singleton<ClassFactory>{
-	public:
+typedef void* (*createObjFuncPtr)();
 
-		void* getItemObject(const std::string &className);
+class ClassFactory: public Singleton<ClassFactory>{
+public:
 
-		void registItemObject(const std::string &className,createObjFuncPtr ptr);
+	void* getItemObject(const std::string &className);
 
-		~ClassFactory();
+	void registItemObject(const std::string &className,createObjFuncPtr ptr);
 
-	private:
-		friend Singleton<ClassFactory>;
-		ClassFactory(){}
-		std::map<std::string,createObjFuncPtr> factory;
-	};
+	~ClassFactory();
+
+private:
+	friend Singleton<ClassFactory>;
+	ClassFactory(){}
+	std::map<std::string,createObjFuncPtr> factory;
+};
+
 
 }
 
