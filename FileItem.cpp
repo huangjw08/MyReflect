@@ -4,8 +4,9 @@
 
 #include "FileItem.h"
 
+
 FileItem::FileItem(): Item("FileItem"){}
 
 void FileItem::Print() {
-	std::cout<<className<<std::endl;
+	LOG(INFO)<<className;
 }

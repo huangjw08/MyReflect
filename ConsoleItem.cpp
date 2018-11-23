@@ -8,5 +8,5 @@ ConsoleItem::ConsoleItem() :Item("ConsoleItem"){}
 
 
 void ConsoleItem::Print() {
-	std::cout<<className<<std::endl;
+	LOG(INFO)<<className;
 }

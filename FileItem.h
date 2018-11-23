@@ -7,6 +7,7 @@
 
 #include "Item.h"
 #include <iostream>
+#include <glog/logging.h>
 
 class FileItem: public Item{
 public:

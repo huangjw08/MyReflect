@@ -24,7 +24,7 @@ public:
 private:
 	friend Singleton<ClassFactory>;
 	ClassFactory(){}
-	std::map<std::string,void*> factory;
+	std::map<std::string,createObjFuncPtr> factory;
 };
 
 #endif //MYREFLECT_CLASSFACTORY_H

@@ -1,13 +1,18 @@
+
 #include "ClassFactory.h"
 #include "FileItem.h"
 #include "ConsoleItem.h"
 #include <iostream>
+#include <glog/logging.h>
+
+
 
 #define REGISTRY(className) \
 class className##Helper{\
 public:\
 	className##Helper(){ClassFactory::getInstance().registItemObject(#className,createClassNameFunc);}\
 	static void *createClassNameFunc(){\
+		LOG(INFO)<<"this is createClassNameFunc\n";\
 		return new className;\
 	}\
 };\
@@ -18,24 +23,32 @@ REGISTRY(ConsoleItem)
 
 
 static void *createFileItemFunc2(){
-	std::cout<<"this is createFileItemFunc2\n";
+	LOG(INFO)<<"this is createFileItemFunc2\n";
 	return new FileItem;
 }
 
 
 int main() {
 
+	google::InitGoogleLogging("MyReflect");
+	FLAGS_logtostderr=1;
+
+
 	FileItem* fileItemPtr= static_cast<FileItem*>(ClassFactory::getInstance().getItemObject("FileItem"));
 	fileItemPtr->Print();
+	delete fileItemPtr;
 
-	std::cout<<"change createObjFunc\n";
+	LOG(INFO)<<"change createObjFunc\n";
 	ClassFactory::getInstance().registItemObject("FileItem",createFileItemFunc2);
 	fileItemPtr=static_cast<FileItem*>(ClassFactory::getInstance().getItemObject("FileItem"));
 	fileItemPtr->Print();
-	//do not need to delete fileItemPtr; ~ClassFactory() will do it;
+	delete fileItemPtr;
 
 	ConsoleItem* consoleItemPtr= static_cast<ConsoleItem*>(ClassFactory::getInstance().getItemObject("ConsoleItem"));
 	consoleItemPtr->Print();
+	delete consoleItemPtr;
 
+
+	google::ShutdownGoogleLogging();
 	return 0;
 }
