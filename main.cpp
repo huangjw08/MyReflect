@@ -1,7 +1,7 @@
 
 #include "ClassFactory.h"
-#include "FileItem.h"
-#include "ConsoleItem.h"
+#include "Item/FileItem.h"
+#include "Item/ConsoleItem.h"
 #include <iostream>
 #include <glog/logging.h>
 
@@ -27,7 +27,7 @@ namespace RF{
 		return new FileItem;
 	}
 }
-
+  
 using namespace RF;
 
 int main() {
